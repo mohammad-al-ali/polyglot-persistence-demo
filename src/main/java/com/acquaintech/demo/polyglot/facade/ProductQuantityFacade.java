@@ -17,12 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * The ONLY class allowed to coordinate ProductService (MongoDB) and
- * QuantityService (MySQL). ProductController talks only to this facade;
- * ProductService and QuantityService never call each other directly.
- * This boundary is a team convention, not enforced by Spring Modulith.
- */
 @Slf4j
 @Service
 @RequiredArgsConstructor

@@ -12,10 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * MySQL-only logic for quantity/inventory rows.
- * Must never call ProductService directly — see ProductQuantityFacade.
- */
 @Slf4j
 @Service
 @RequiredArgsConstructor

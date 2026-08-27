@@ -4,10 +4,7 @@ import com.acquaintech.demo.polyglot.exception.ProductNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-/**
- * Mongo-only logic for the product catalog.
- * Must never call QuantityService directly — see ProductQuantityFacade.
- */
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {

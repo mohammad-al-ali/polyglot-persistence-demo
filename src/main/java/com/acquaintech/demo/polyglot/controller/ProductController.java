@@ -17,11 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Talks ONLY to ProductQuantityFacade — never to ProductService or
- * QuantityService directly. This boundary is a team convention, not
- * enforced by Spring Modulith (intentionally not used in this demo).
- */
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor

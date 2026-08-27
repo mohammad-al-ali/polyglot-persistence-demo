@@ -25,17 +25,8 @@ public class ProductRequest {
 
     private double price;
 
-    /**
-     * Optional. One or more name/value traits (e.g. Color=Red, Size=M).
-     */
     @Valid
     private List<Attribute> attributes;
-
-    /**
-     * Optional. When present, the product and its quantity are created
-     * together (dual write with retry + compensation). When absent, only
-     * the product is written to MongoDB.
-     */
     @Valid
     private QuantityRequest quantity;
 }

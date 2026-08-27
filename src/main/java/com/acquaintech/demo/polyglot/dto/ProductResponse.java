@@ -22,18 +22,7 @@ public class ProductResponse {
     private double price;
     private List<Attribute> attributes;
 
-    /**
-     * Populated only when a quantity row was actually persisted for this
-     * product (either at creation time or via the register-quantity endpoint).
-     * Reflects just the single row that call touched.
-     */
     private QuantityResponse quantity;
 
-    /**
-     * All quantity rows currently stored in MySQL for this product — a
-     * product can have more than one (e.g. one per warehouse). Populated on
-     * GET; null on the write endpoints above, which only report the row
-     * they just touched via {@link #quantity}.
-     */
     private List<QuantityResponse> quantities;
 }

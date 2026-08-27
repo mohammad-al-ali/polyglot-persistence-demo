@@ -11,11 +11,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * MySQL-side quantity row. productId is a plain string reference to a Mongo
- * Product document — there is intentionally no foreign key, since MySQL
- * cannot enforce referential integrity against a different database engine.
- */
 @Entity
 @Table(name = "quantities")
 @Data

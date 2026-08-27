@@ -9,9 +9,6 @@ public interface QuantityRepository extends JpaRepository<Quantity, Long> {
 
     List<Quantity> findByProductId(String productId);
 
-    // Derived delete queries execute as find-then-remove under the hood, so
-    // Spring Data requires a transaction around the call — without this the
-    // repository throws TransactionRequiredException at runtime.
     @Transactional
     void deleteByProductId(String productId);
 }
