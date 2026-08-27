@@ -13,7 +13,7 @@ public class QuantityRequest {
 
     @NotNull
     @Min(0)
-    private Integer quantityOnHand;
+    private Integer quantity;
 
     private String warehouseLocation;
 }

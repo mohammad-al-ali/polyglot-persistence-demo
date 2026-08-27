@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "products")
 @Data
 @Builder
@@ -21,4 +23,5 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    private List<Attribute> attributes;
 }

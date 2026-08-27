@@ -13,6 +13,6 @@ public class QuantityResponse {
 
     private Long id;
     private String productId;
-    private int quantityOnHand;
+    private int quantity;
     private String warehouseLocation;
 }

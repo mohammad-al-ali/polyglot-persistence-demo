@@ -35,6 +35,7 @@ public class ProductQuantityFacade {
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
+                .attributes(request.getAttributes())
                 .build());
 
         if (request.getQuantity() == null) {
@@ -92,10 +93,11 @@ public class ProductQuantityFacade {
                 .name(product.getName())
                 .description(product.getDescription())
                 .price(product.getPrice())
+                .attributes(product.getAttributes())
                 .quantity(quantity == null ? null : QuantityResponse.builder()
                         .id(quantity.getId())
                         .productId(quantity.getProductId())
-                        .quantityOnHand(quantity.getQuantityOnHand())
+                        .quantity(quantity.getQuantity())
                         .warehouseLocation(quantity.getWarehouseLocation())
                         .build())
                 .build();

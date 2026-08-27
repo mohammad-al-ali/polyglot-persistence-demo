@@ -27,7 +27,7 @@ public class QuantityService {
     public Quantity create(String productId, QuantityRequest request) {
         Quantity quantity = Quantity.builder()
                 .productId(productId)
-                .quantityOnHand(request.getQuantityOnHand())
+                .quantity(request.getQuantity())
                 .warehouseLocation(request.getWarehouseLocation())
                 .build();
         return quantityRepository.save(quantity);

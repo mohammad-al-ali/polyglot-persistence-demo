@@ -32,7 +32,7 @@ public class Quantity {
     private String productId;
 
     @Column(nullable = false)
-    private int quantityOnHand;
+    private int quantity;
 
     private String warehouseLocation;
 }
