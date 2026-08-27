@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * The ONLY class allowed to coordinate ProductService (MongoDB) and
  * QuantityService (MySQL). ProductController talks only to this facade;
@@ -50,6 +52,15 @@ public class ProductQuantityFacade {
             productService.deleteById(product.getId());
             throw ex;
         }
+    }
+
+    public ProductResponse getProduct(String productId) {
+        if (!productService.existsById(productId)) {
+            throw new ProductNotFoundException(productId);
+        }
+        Product product = productService.getById(productId);
+        List<Quantity> quantities = quantityService.findByProductId(productId);
+        return toResponseWithQuantities(product, quantities);
     }
 
     public ProductResponse addQuantity(String productId, QuantityRequest request) {
@@ -94,12 +105,28 @@ public class ProductQuantityFacade {
                 .description(product.getDescription())
                 .price(product.getPrice())
                 .attributes(product.getAttributes())
-                .quantity(quantity == null ? null : QuantityResponse.builder()
-                        .id(quantity.getId())
-                        .productId(quantity.getProductId())
-                        .quantity(quantity.getQuantity())
-                        .warehouseLocation(quantity.getWarehouseLocation())
-                        .build())
+                .quantity(quantity == null ? null : toQuantityResponse(quantity))
+                .build();
+    }
+
+    private ProductResponse toResponseWithQuantities(Product product, List<Quantity> quantities) {
+        return ProductResponse.builder()
+                .id(product.getId())
+                .sku(product.getSku())
+                .name(product.getName())
+                .description(product.getDescription())
+                .price(product.getPrice())
+                .attributes(product.getAttributes())
+                .quantities(quantities.stream().map(this::toQuantityResponse).toList())
+                .build();
+    }
+
+    private QuantityResponse toQuantityResponse(Quantity quantity) {
+        return QuantityResponse.builder()
+                .id(quantity.getId())
+                .productId(quantity.getProductId())
+                .quantity(quantity.getQuantity())
+                .warehouseLocation(quantity.getWarehouseLocation())
                 .build();
     }
 }
