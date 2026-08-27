@@ -55,18 +55,12 @@ public class ProductQuantityFacade {
     }
 
     public ProductResponse getProduct(String productId) {
-        if (!productService.existsById(productId)) {
-            throw new ProductNotFoundException(productId);
-        }
         Product product = productService.getById(productId);
         List<Quantity> quantities = quantityService.findByProductId(productId);
         return toResponseWithQuantities(product, quantities);
     }
 
     public ProductResponse addQuantity(String productId, QuantityRequest request) {
-        if (!productService.existsById(productId)) {
-            throw new ProductNotFoundException(productId);
-        }
         Product product = productService.getById(productId);
         Quantity quantity = quantityService.create(productId, request);
         return toResponse(product, quantity);
